@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 public class RockPaperScissorsTest {
 
     RockPaperScissors rps;
-    RockPaperScissors rps2;
+
     @BeforeMethod
     public void setUp() {
         rps = new RockPaperScissors();
@@ -23,7 +23,16 @@ public class RockPaperScissorsTest {
 
     @Parameters({"papier","pierre"})
     @Test()
-    public void testPlay(String p1 , String p2) {
+    public void testWinPlay(String p1 , String p2) {
         assertEquals(rps.play(Play.valueOf(p1),Play.valueOf(p2)),Result.WIN);
     }
+    @Parameters({"papier","papier"})
+    @Test()
+    public void testTiePlay (String p1, String p2){
+        assertEquals(rps.play(Play.valueOf(p1),Play.valueOf(p2)),Result.TIE);
+    }
+
+
+
+
 }
