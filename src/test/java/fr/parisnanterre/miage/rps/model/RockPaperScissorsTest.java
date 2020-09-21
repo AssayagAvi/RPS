@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 public class RockPaperScissorsTest {
 
     RockPaperScissors rps;
-
+    RockPaperScissors rps2;
     @BeforeMethod
     public void setUp() {
         rps = new RockPaperScissors();
