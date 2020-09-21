@@ -38,8 +38,43 @@ public class RockPaperScissorsTest {
         assertEquals(rps.play(Play.valueOf(p1),Play.valueOf(p2)),Result.LOST);
     }
 
+    @Test(dataProvider = "winData ")
+        public Object [][] createWinData(){
+            return new Object [][]{
+                    {Play.PAPER , Play.ROCK},
+                    {Play.ROCK , Play.SCISSORS},
+                    {Play.SCISSORS , Play.PAPER}
+            };
+        }
+
+
+    @Test(dataProvider = "tieData ")
+    public Object [][] createTieData(){
+        return new Object [][]{
+                {Play.PAPER , Play.PAPER},
+                {Play.ROCK , Play.ROCK},
+                {Play.SCISSORS , Play.SCISSORS}
+        };
+    }
+
+    @Test(dataProvider = "lostData ")
+    public Object [][] createLostData(){
+        return new Object [][]{
+                {Play.PAPER , Play.SCISSORS},
+                {Play.ROCK , Play.PAPER},
+                {Play.SCISSORS , Play.ROCK}
+        };
+    }
 
 
 
 
+
+
+
+
+
+//fin de la classe
 }
+
+
