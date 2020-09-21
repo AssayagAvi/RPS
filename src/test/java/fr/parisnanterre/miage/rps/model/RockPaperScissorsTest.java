@@ -32,6 +32,13 @@ public class RockPaperScissorsTest {
         assertEquals(rps.play(Play.valueOf(p1),Play.valueOf(p2)),Result.TIE);
     }
 
+    @Parameters({"pierre","papier"})
+    @Test()
+    public void testLostPlay (String p1, String p2){
+        assertEquals(rps.play(Play.valueOf(p1),Play.valueOf(p2)),Result.LOST);
+    }
+
+
 
 
 
