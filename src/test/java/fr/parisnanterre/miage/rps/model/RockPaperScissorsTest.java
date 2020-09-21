@@ -4,6 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.annotations.DataProvider;
 
 import static org.testng.Assert.*;
 
@@ -21,24 +22,13 @@ public class RockPaperScissorsTest {
         rps = null;
     }
 
-    @Parameters({"papier","pierre"})
-    @Test()
-    public void testWinPlay(String p1 , String p2) {
-        assertEquals(rps.play(Play.valueOf(p1),Play.valueOf(p2)),Result.WIN);
-    }
-    @Parameters({"papier","papier"})
-    @Test()
-    public void testTiePlay (String p1, String p2){
-        assertEquals(rps.play(Play.valueOf(p1),Play.valueOf(p2)),Result.TIE);
+
+    @Test(dataProvider = "winData")
+    public void testWinPlay(Play p1 , Play p2) {
+        assertEquals(rps.play(p1,p2),Result.WIN);
     }
 
-    @Parameters({"pierre","papier"})
-    @Test()
-    public void testLostPlay (String p1, String p2){
-        assertEquals(rps.play(Play.valueOf(p1),Play.valueOf(p2)),Result.LOST);
-    }
-
-    @Test(dataProvider = "winData ")
+    @DataProvider (name= "winData")
         public Object [][] createWinData(){
             return new Object [][]{
                     {Play.PAPER , Play.ROCK},
@@ -48,7 +38,7 @@ public class RockPaperScissorsTest {
         }
 
 
-    @Test(dataProvider = "tieData ")
+    @DataProvider (name= "tieData")
     public Object [][] createTieData(){
         return new Object [][]{
                 {Play.PAPER , Play.PAPER},
@@ -56,8 +46,13 @@ public class RockPaperScissorsTest {
                 {Play.SCISSORS , Play.SCISSORS}
         };
     }
+    @Test(dataProvider = "tieData")
+    public void testTiePlay (Play p1, Play p2){
+        assertEquals(rps.play(p1,p2),Result.TIE);
+    }
 
-    @Test(dataProvider = "lostData ")
+
+    @DataProvider (name= "lostData")
     public Object [][] createLostData(){
         return new Object [][]{
                 {Play.PAPER , Play.SCISSORS},
@@ -65,6 +60,11 @@ public class RockPaperScissorsTest {
                 {Play.SCISSORS , Play.ROCK}
         };
     }
+    @Test(dataProvider = "lostData")
+    public void testLostPlay (Play p1, Play p2){
+        assertEquals(rps.play(p1, p2),Result.LOST);
+    }
+
 
 
 
